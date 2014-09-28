@@ -1,0 +1,111 @@
+webserver:
+  port: 8080
+
+hostname:
+  city: "0.0.0.0"
+  website: "0.0.0.0"
+
+# Use virtual hosts for multiple hostnames, if true the engine will also require
+# an entry in "/etc/hosts" of: 127.0.0.1  api.localhost
+usevhosts: false
+
+# Multiple Nodes running concurently.
+multipleNodes: false
+
+# Google Analytics key
+ga: "UA-XXXXX-X"
+
+logger:
+  # Log Levels:
+  # SEVERE: 1000
+  # WARN:   800
+  # INFO:   600
+  # FINE:   400
+  # FINER:  200
+  # FINEST: 100
+  level: 100
+  syslog: false
+  file: false
+  saveToFile: false
+  console: true
+  filename: "./logs/app.log"
+
+mongo:
+  hostname: "0.0.0.0"
+  database: app
+  # Attempt to reconnect interval in ms.
+  reconnectTime: 500
+
+redis:
+  namespace: "app:"
+  main:
+    host: "0.0.0.0"
+    port: 16379
+  sessionWebsite:
+    # https://github.com/visionmedia/connect-redis#options
+    host: "0.0.0.0"
+    port: 16379
+    prefix: "appSessionWeb:"
+  sessionCity:
+    host: "0.0.0.0"
+    port: 16379
+    prefix: "appSessionCity:"
+  kansas:
+    port: 16379
+    host: "0.0.0.0"
+    pass: ""
+  idify:
+    port: 16379
+    host: "0.0.0.0"
+    pass: ""
+
+cookies:
+  website:
+    # domain: ".localhost"
+    name: 'app'
+    session:
+      secret: "zzz"
+      maxAge: null
+  city:
+    # domain: ".city.localhost"
+    name: 'city'
+    session:
+      secret: "xxx"
+      maxAge: null
+
+
+users:
+  # Durations in milliseconds:
+  # 1 day:      86400000
+  # 1 week:    604800000
+  # 1 month:  2592000000
+  # 3 months: 7776000000
+  emailConfirmationExpires: 7776000000
+  passwordResetExpires: 604800000
+
+crypto:
+  salt: "zzz"
+
+mandrill:
+  apikey: "xxx"
+  apikeyStub: "xxx"
+
+test:
+  hostname: "0.0.0.0"
+  port: 3000
+  apiPort: 3001
+
+# This is about the API websocket server
+websocket:
+  # The time to wait for a challenge to complete, in milliseconds.
+  challengeTimeout: 6000
+
+  # The timeout for the client, when it closes the connection it still X amounts
+  # of seconds to do re open of the connection. This value is sent to the
+  # client after a successful handshake.
+  closeTimeout: 60
+
+  # The begin point where Socket.IO starts looking for incoming connections.
+  # This should be the same between the client and the server.
+  # WARNING: do not change this value or socket.io breaks (!)
+  resource: "socket.io"
